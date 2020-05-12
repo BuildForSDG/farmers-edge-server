@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="post">
+		{% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Register an account</h1>
+        <input type="email" name="email" id="inputEmail" placeholder="Email address" required autofocus>
+
+        <input type="text" name="username" id="inputUsername" placeholder="Username" required>
+  
+        <input type="password" name="password1" id="inputPassword1" placeholder="Password" required>
+
+        <input type="password" name="password2" id="inputPassword2" placeholder="Confirm password" required>
+        {% for field in registration_form %}
+        <p>{% for error in field.errors %}<p style="color: red">{{ error }}</p>{% endfor %}</p>
+        {% endfor %}
+        {% if registration_form.non_field_errors %}
+            <div>
+            	<p>{{registration_form.non_field_errors}}</p>
+            </div>
+        {% endif %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+</form>
+</body>
+</html>
+
+
