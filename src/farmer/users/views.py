@@ -1,30 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 
-from users.forms import AccountAuthenticationForm
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 
 
-
-def login_view(request):
-	context = {}
-	if request.POST:
-		form = AccountAuthenticationForm(request.POST)
-		if form.is_valid():
-			email = request.POST['email']
-			password = request.POST['password']
-			user = authenticate(email=email, password=password)
-		if user:
-			login(request, user)
-			return redirect('home')
-	else:
-		form = AccountAuthenticationForm()
-		context['login_form'] = form
-	return render(request, "users/login.html", context)
-
-def home_screen_view(request):
-	if not request.user.is_authenticated:
-			return redirect("login")
-
-	return render(request, "users/home.html", {})
+from users.serializers import UserLoginSerializer
 
 
+class UserLoginAPIView(APIView):
+        permission_classes = [AllowAny]
+        serializer_class = UserLoginSerializer
+
+        def post(self, request, *args, **kwargs):
+                data = request.data
+                serializer = UserLoginSerializer(data=data)
+                if serializer.is_valid(raise_exception=True):
+                        new_data = serializer.data
+                        return Response(new_data, status=HTTP_200_OK)
+                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
