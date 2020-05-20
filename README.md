@@ -1,5 +1,6 @@
 A one-liner phrase describing this project or app
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e139805eb7724e5c8fb6a54f774803d0)](https://app.codacy.com/gh/BuildForSDG/farmers-edge-server?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/farmers-edge-server&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://img.shields.io/badge/Code%20Quality-D-red)](https://img.shields.io/badge/Code%20Quality-D-red)
 
 
