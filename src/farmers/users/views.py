@@ -17,7 +17,7 @@ def activate_account(request, uidb64, token):
         print(user)
         user.is_active = True
         user.save()
-        return HttpResponse('Your account has been activate successfully')
+        return HttpResponse('Your account has been activated successfully')
     else:
         return HttpResponse('Activation link is invalid!')
 # def reset_password(request, uidb64, token):
