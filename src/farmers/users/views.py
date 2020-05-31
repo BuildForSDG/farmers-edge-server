@@ -14,12 +14,20 @@ def activate_account(request, uidb64, token):
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        print(user)
+        print("usr",user)
         user.is_active = True
         user.save()
         return HttpResponse('Your account has been activated successfully')
     else:
         return HttpResponse('Activation link is invalid!')
+def confirm_update(request,uidb64,token):
+    if request.method == 'POST':
+        print('request.data')
+        return HttpResponse("got it")
+    else:
+        print("hey")
+        return HttpResponse("p")
+        # return Response("hey")
 # def reset_password(request, uidb64, token):
 #     try:
 #         uid = force_bytes(urlsafe_base64_decode(uidb64))
