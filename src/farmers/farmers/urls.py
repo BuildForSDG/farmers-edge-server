@@ -7,5 +7,7 @@ urlpatterns = [
     path('api/',include('contacts.urls')),
     path('auth/',include('users.urls')),
     path('api/v1/', include('market.urls')),
+    path('',include('users.reset_urls')),
+    path('auth/',include('users.urls')),
     path('admin/', admin.site.urls),
 ]
