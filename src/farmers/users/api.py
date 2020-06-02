@@ -19,6 +19,7 @@ from rest_framework import status
 
 class RegisterAPI(generics.CreateAPIView):
 from rest_framework.decorators import api_view
+from rest_framework.renderers import HTMLFormRenderer,TemplateHTMLRenderer
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     parser_classes = (MultiPartParser, FormParser)
@@ -95,6 +96,8 @@ class ConfirmPasswordChange(APIView):
         return Response({"hh"})
 @api_view(['POST'])
 def confirm_password_change(request,uidb64,token):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'change/pass_change.html'
     if request.method == 'POST':
         print('request.data')
         password = request.data['password']
