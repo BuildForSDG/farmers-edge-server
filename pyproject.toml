@@ -7,6 +7,7 @@ authors = ["manulangat <emmanuelthedeveloper@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^3.0.6"
+django-cors-headers = "^3.3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

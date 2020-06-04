@@ -9,7 +9,7 @@ from .token_generator import account_activation_token
 def send_welcome_email(name,receiver,uid,token):
     #creating the message,subject and sender
     subject = "Activate your account"
-    sender = "emmanuelthedeveloper@gmail.com"
+    sender = "levy.naibei91@gmail.com"
 
     # @passing in the context variables
     text_content = render_to_string('email/newsemail.txt',{"name":name,"uid":uid,"token":token})
