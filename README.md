@@ -1,4 +1,3 @@
-A one-liner phrase describing this project or app
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e139805eb7724e5c8fb6a54f774803d0)](https://app.codacy.com/gh/BuildForSDG/farmers-edge-server?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/farmers-edge-server&utm_campaign=Badge_Grade_Settings)
 
@@ -68,23 +67,23 @@ To be provided soon
 
 ### Endpoints
 
-|       Endpoint                                  |               FUNCTIONALITY                             |
-| ----------------------------------------        |:-------------------------------------------------------
-| POST &emsp;&emsp;/auth/v1/register              | This will register user                                 |
-| POST &emsp;&emsp;/auth/v1/login                 | This will login user                                    |
-| GET  &emsp;&emsp;/auth/v1/user/                 | This will return user data                              |
-| POST &emsp;&emsp;/api/v1/farmer/product/        | This will create Product                                |
-| POST &emsp;&emsp;/api/v1/retailer/order/        | This will create Order                                  |
-| PUT  &emsp;&emsp;/api/v1/farmer/update/1        | This will update Product                                |
-| GET  &emsp;&emsp;/api/v1/product/ready/1        | This will send email to retailers                       |
-| GET  &emsp;&emsp;/api/v1/retailer/order/detail/1| This will return order detail                           |
+|       Endpoint                                        |               FUNCTIONALITY                             |
+| ------------------------------------------------------|:-------------------------------------------------------
+| POST &emsp;&emsp;/auth/v1/register                    | This will register user                                 |
+| POST &emsp;&emsp;/auth/v1/login                       | This will login user                                    |
+| GET  &emsp;&emsp;/auth/v1/user/                       | This will return user data                              |
+| POST &emsp;&emsp;/api/v1/users/farmer/product/        | This will create Product                                |
+| POST &emsp;&emsp;/api/v1/users/retailer/order/        | This will create Order                                  |
+| PUT  &emsp;&emsp;/api/v1/users/farmer/update/1        | This will update Product                                |
+| GET  &emsp;&emsp;/api/v1/users/product/ready/1        | This will send email to retailers                       |
+| GET  &emsp;&emsp;/api/v1/users/retailer/order/detail/1| This will return order detail                           |
 
 ## Authors
 
-*  [Ogunlana Tunbosun](https://github.com/bosunogunlana) - Mentor
-*  [Levy Naibei](https://github.com/Levy-Naibei) - TTL
-*  [Ennocent Omondi](https://github.com/innovistar)
-*  [Emmanuel Langat](https://github.com/manulangat1)cd
+-  [Ogunlana Tunbosun](https://github.com/bosunogunlana) - Mentor
+-  [Levy Naibei](https://github.com/Levy-Naibei) - TTL
+-  [Ennocent Omondi](https://github.com/innovistar)
+-  [Emmanuel Langat](https://github.com/manulangat1)
 
 ## Contributing
 If this project sounds interesting to you and you'd like to contribute, thank you!
