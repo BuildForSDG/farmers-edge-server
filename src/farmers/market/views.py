@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 
 
 from market.models import Product, Order
@@ -103,4 +104,15 @@ def index(response, pk):
 	print(t.retailer)
 	print(ls.product)
 	return HttpResponse("<h1>%s</h1>" %ls.farmer)
+
+#Get all the created products
+class ProductListView(ListAPIView):
+	queryset = Product.objects.all()
+	serializer_class = ProductSerializer
+
+
+#Get all the created orders
+class OrderListView(ListAPIView):
+	queryset = Order.objects.all()
+	serializer_class = OrderSerializer
                 
