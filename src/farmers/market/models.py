@@ -7,7 +7,7 @@ from django.conf import settings
 
 
 class Product(models.Model):
-    farmer = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
+    #farmer = models.ForeignKey(settings.AUTH_USER_MODEL, default=None, on_delete=models.CASCADE)
     product = models.CharField(max_length=200)
     quantity = models.CharField(max_length=200, null=True)
     total_cost = models.CharField(max_length=100, null=True)
@@ -19,8 +19,6 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    retailer = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
     product_name = models.CharField(max_length=100, null=True)
     total_cost = models.CharField(max_length=200)
     quantity = models.CharField(max_length=100, null=True)

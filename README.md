@@ -1,105 +1,90 @@
 A one-liner phrase describing this project or app
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e139805eb7724e5c8fb6a54f774803d0)](https://app.codacy.com/gh/BuildForSDG/farmers-edge-server?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/farmers-edge-server&utm_campaign=Badge_Grade_Settings)
-[![Codacy Badge](https://img.shields.io/badge/Code%20Quality-D-red)](https://img.shields.io/badge/Code%20Quality-D-red)
 
+# Farmers Edge
 
 ## About
 
-What is this project about. Ok to enrich here or the section above it with an image. 
-
-Once this repo has been setup on Codacy by the TTL, replace the above badge with the actual one from the Codacy dashboard, and add the code coverage badge as well. This is mandatory
-
-This is a simple python starter repo template for setting up your project. The setup contains:
-
-- install: poetry via pip. poetry is a dependecy manager.
-
-- poetry: configuration in pyproject.toml
-
-- flake8: for linting and formatting
+Farmers Edge enables small scale farmers double their productivity hence doubles their income.
+The app enables them to get ready market for their product, access useful info on farming and get funding for their farming activitty.
 
 ## Why
 
-Talk about what problem this solves, what SDG(s) and SGD targets it addresses and why these are important
+This app aims to address hunger problem in the world by focusing on achievemment of Zero Hunger SDG.
 
 ## Usage
-How would someone use what you have built, include URLs to the deployed app, service e.t.c when you have it setup
 
+### Getting started
 
-## Setup
-You should have **Python 3.5+** and **git** installed. 
+#### Prerequisites
 
-1. Clone the repo you've created from the template herein and change into the directory
+```
+- Python
+- Djangorestframework
+```
 
-    ``
-    git clone <Your Repository>
-    ``
+#### Installation
 
-2. Change into repo directory
+Clone the repository
 
-    ``
-    cd python-starter
-    ``
+```
+git clone https://github.com/BuildForSDG/farmers-edge-server.git
+```
 
-3. Install poetry, a dependecy manager for python.
+Move into the project folder
 
-    On windows, you will need powershell to install it:
+```
+cd farmers-edge-server
+```
 
-    ``
-    (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
-    ``
+Install the dependencies of the project
 
-    After that you will need to restart the shell to make it operational.
+```
+poetry install
+```
 
-    &nbsp;
+Run the app
 
-    On linux and other posix systems (mac included):
+```
+poetry run python manage.py runserver
+```
+#### Further info
+-  Lint: `poetry run flake8`
+-  Run tests using the command: `poetry run pytest`
+-  Install dependencies: `poetry add <dependency>`
+-  Install dev dependencies: `poetry add --dev <dev-dependency>`
 
-    ``
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-    ``
+#### Hosted API in Heroku
 
-    &nbsp;
+To be provided soon
 
-    To check that it is correctly installed, you can check the version:
-    ``
-    poetry --version
-    ``
+## Functionality
 
-    May be the latest stable version is not installed with the installation script, to update poetry, you can run:
+### Authentication
 
-    ``
-    poetry self update
-    ``
+1. User can register
+2. Registered users can login
 
-4. With poetry installed, you should install project dependecies by running:
+### Endpoints
 
-    ``
-    poetry install
-    ``
-
-    This will install pytest for running tests and flake8, linter for your project.
-
-#### To Note
-`src/app.py` is the entry to the project and source code should go into the `src` folder.
-
-All tests should be written in the `tests` folder. tests/test_src.py is a sample test file that shows how tests should like. Feel free to delete it.
-
-#### Hints
-
-- Lint: `poetry run flake8`
-- Run tests using the command: `poetry run pytest`
-- Install dependencies: 
-  `poetry add <dependency>`
-- Install dev dependencies:
-  `poetry add --dev <dev-dependency>`
-- Run your project:
-  `poetry run app`
-
+|       Endpoint                                  |               FUNCTIONALITY                             |
+| ----------------------------------------        |:-------------------------------------------------------
+| POST &emsp;&emsp;/auth/v1/register              | This will register user                                 |
+| POST &emsp;&emsp;/auth/v1/login                 | This will login user                                    |
+| GET  &emsp;&emsp;/auth/v1/user/                 | This will return user data                              |
+| POST &emsp;&emsp;/api/v1/farmer/product/        | This will create Product                                |
+| POST &emsp;&emsp;/api/v1/retailer/order/        | This will create Order                                  |
+| PUT  &emsp;&emsp;/api/v1/farmer/update/1        | This will update Product                                |
+| GET  &emsp;&emsp;/api/v1/product/ready/1        | This will send email to retailers                       |
+| GET  &emsp;&emsp;/api/v1/retailer/order/detail/1| This will return order detail                           |
 
 ## Authors
 
-List the team behind this project. Their names linked to their Github, LinkedIn, or Twitter accounts should siffice. Ok to signify the role they play in the project, including the TTL and mentor
+*  [Ogunlana Tunbosun](https://github.com/bosunogunlana) - Mentor
+*  [Levy Naibei](https://github.com/Levy-Naibei) - TTL
+*  [Ennocent Omondi](https://github.com/innovistar)
+*  [Emmanuel Langat](https://github.com/manulangat1)cd
 
 ## Contributing
 If this project sounds interesting to you and you'd like to contribute, thank you!
@@ -110,11 +95,8 @@ First, you can send a mail to buildforsdg@andela.com to indicate your interest, 
 
 ## Acknowledgements
 
-Did you use someone else’s code?
-Do you want to thank someone explicitly?
-Did someone’s blog post spark off a wonderful idea or give you a solution to nagging problem?
-
-It's powerful to always give credit.
+* [Django](https://docs.djangoproject.com/en/3.0/)
+* [Django REST framework](https://www.django-rest-framework.org/)
 
 ## LICENSE
 MIT
