@@ -1,5 +1,5 @@
 from django.urls import path, include
-from market.views import index, order_detail, order_create, product_create, product_detail, product_update, product_ready
+from market.views import index, order_detail, order_create, product_create, product_detail, product_update, product_ready, ProductListView, OrderListView
 #, OrderCreateAPIView, OrderDetailAPIView, ProductUpdateAPIView
 
 urlpatterns = [
@@ -10,4 +10,6 @@ urlpatterns = [
     path('farmer/update/<int:pk>/', product_update, name="update"),
     path('farmer/product/', product_create, name="product"),
     path('retailer/order/', order_create, name="order"),
+    path('farmer/product/list/', ProductListView.as_view(), name="product_list"),
+    path('retailer/order/list/', OrdertListView.as_view(), name="order_list"),
 ]
