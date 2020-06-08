@@ -26,38 +26,36 @@ class LoginSerializer(serializers.Serializer):
 # register serializers
 class RegisterSerializer(serializers.ModelSerializer):
     """Serializers registration requests and creates a new user."""
-    image = serializers.ImageField(default=None)
     
     class Meta:
         model = User
         fields = (
             'id',
-            'first_name',
+            'firstName',
             'surname',
             'username',
             'email',
             'password',
-            'phone_number',
+            'phoneNumber',
             'location',
-            'id_number',
-            'User_type',
-            'image'
+            'idNumber',
+            'typeUser',
         )
-        extra_kwargs={'password':{'write_only':True}}
-
+        extra_kwargs = {
+            'password':{'write_only':True}
+        }
 
     def create(self, validated_data):
         # print(validated_data['image'])
         user = User.objects.create(
-            first_name = validated_data['first_name'],
+            firstName = validated_data['firstName'],
             surname = validated_data['surname'],
 	        username = validated_data['username'],
             email = validated_data['email'],
             location = validated_data['location'],
-            phone_number = validated_data['phone_number'],
-            id_number = validated_data['id_number'],
-            User_type = validated_data['User_type'],
-            image = validated_data['image'],
+            phoneNumber = validated_data['phoneNumber'],
+            idNumber = validated_data['idNumber'],
+            typeUser = validated_data['typeUser'],
             is_active = False
         )
         user.set_password(validated_data['password'])
@@ -74,14 +72,13 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id',
-            'first_name',
+            'firstName',
             'surname',
             'username',
             'email',
             'location',
-            'phone_number',
-            'id_number',
-            'User_type',
-            'image',
+            'phoneNumber',
+            'idNumber',
+            'typeUser',
             'is_active'
         )

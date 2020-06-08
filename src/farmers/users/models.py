@@ -9,15 +9,14 @@ class User(AbstractUser):
         ('farmer', 'Farmer'),
         ('customer', 'Customer')
     )
-    username = models.CharField(_('username'),max_length=150)
-    first_name = models.CharField(_('first name'),max_length=150)
-    surname = models.CharField(_('surname'),max_length=150)
+    username = models.CharField(_('username'), max_length=150)
+    firstName = models.CharField(_('first name'), max_length=150)
+    surname = models.CharField(_('surname'), max_length=150)
     email = models.EmailField(_('email'), unique=True)
-    phone_number = models.CharField(_('phone number'), max_length=150)
-    id_number = models.CharField(_('id number'), max_length=150)
-    location = models.CharField(max_length=50)
-    User_type = models.CharField(max_length=50, choices=USER_TYPE, default='farmer')
-    image = models.ImageField(upload_to="user_image", null=True, blank=True,default=0)
+    phoneNumber = models.CharField(_('phone number'), unique=True, max_length=150)
+    idNumber = models.CharField(_('id number'), unique=True, max_length=150)
+    location = models.CharField(max_length=150)
+    typeUser = models.CharField(max_length=150, choices=USER_TYPE, default='farmer')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
