@@ -15,42 +15,29 @@ from django.template.loader import render_to_string
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
 
-
 class RegisterAPI(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     parser_classes = (MultiPartParser, FormParser)
 
     def post(self,request,*args,**kwargs):
-        print("+=====", request.data)
-
         """
         Handle user register
         """        
-        serializer = RegisterSerializer(data=request.data)
-
-        if serializer.is_valid():
-            user = serializer.save()
-
-            token = AuthToken.objects.create(user)[1]
-
-            send_confirmation_email_task.delay(
-                user.surname,
-                user.email,
-                urlsafe_base64_encode(force_bytes(user.pk)),
-                account_activation_token.make_token(user))
-
-            data = {
-                "user": UserSerializer(user, context=self.get_serializer_context()).data,
-                "token": token
-            }
-
-            return Response( 
-                serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            print('error', serializer.errors)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        print(user.email)
+        token = AuthToken.objects.create(user)[1]
+        send_confirmation_email_task.delay(
+            user.username,
+            user.email,
+            urlsafe_base64_encode(force_bytes(user.pk)),
+            account_activation_token.make_token(user)
+        )
+        return Response({
+            "user": UserSerializer(user,context=self.get_serializer_context()).data,
+            "token": token
+        })
 
 class LoginAPI(generics.CreateAPIView):
     serializer_class = LoginSerializer
