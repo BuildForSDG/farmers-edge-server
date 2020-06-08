@@ -28,9 +28,14 @@ INSTALLED_APPS = [
     'market.apps.MarketConfig',
     'rest_framework',
     'users.apps.UsersConfig',
+<<<<<<< HEAD
+    'contacts.apps.ContactsConfig',
+    'knox'
+=======
     'knox',
     'corsheaders',
     
+>>>>>>> develop
 ]
 
 MIDDLEWARE = [

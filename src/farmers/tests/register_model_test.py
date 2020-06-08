@@ -28,11 +28,13 @@ def test_can_create_user(api_client):
      "email":'edeyghbjeedghbj@gmail.com',
      "phone_number":'+254740415950',
      "id_number":'34802334',
-     "Location":"Kericho"
+     "Location":"Kericho",
+     "user_type":"FARMER"
      }
     url = reverse('register')
     response = api_client.post(url,valid
             )
+    print("created")
     assert response.status_code == 200
 
 @pytest.mark.django_db
@@ -61,4 +63,20 @@ def test_login_data_validation(
    response1 = api_client.post(url,{"username":"e@gmail.com","password":"password"})
    assert response1.status_code == 400
    api_client.logout()
+
+# from contacts.models import Contacts
+# from django.urls import reverse
+
+@pytest.mark.django_db
+def test_create_contact(client):
+    data = {
+        'name':'manu',
+        'email':"emmanuelthedeveloper@gmail.com",
+        'subject':'man',
+        'message':'hey there'
+    }
+    url = reverse('contact_create')
+    response = client.post(url,data)
+    print(response)
+    assert response.status_code == 201
 
