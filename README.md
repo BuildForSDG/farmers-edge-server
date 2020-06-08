@@ -73,12 +73,14 @@ To be provided soon
 | ------------------------------------------------------|:-------------------------------------------------------
 | POST &emsp;&emsp;/auth/v1/register                    | This will register user                                 |
 | POST &emsp;&emsp;/auth/v1/login                       | This will login user                                    |
-| GET  &emsp;&emsp;/auth/v1/user/                       | This will return user data                              |
 | POST &emsp;&emsp;/api/v1/farmer/product/              | This will create Product                                |
 | POST &emsp;&emsp;/api/v1/retailer/order/              | This will create Order                                  |
+| GET  &emsp;&emsp;/api/v1/'farmer/product/list/        | This will return all products                           |
+| GET  &emsp;&emsp;/api/v1/retailer/order/list          | This will return all placed order                       |
+| GET  &emsp;&emsp;/api/v1/product/ready/1              | This will send email notification to retailers          |
 | PUT  &emsp;&emsp;/api/v1/farmer/update/1              | This will update Product                                |
-| GET  &emsp;&emsp;/api/v1/product/ready/1              | This will send email to retailers                       |
 | GET  &emsp;&emsp;/api/v1/retailer/order/detail/1      | This will return order detail                           |
+| GET  &emsp;&emsp;/auth/v1/user/                       | This will return user data                              |
 
 ### Authentication
 

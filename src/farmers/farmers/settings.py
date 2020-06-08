@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'market.apps.MarketConfig',
     'rest_framework',
     'users.apps.UsersConfig',
+    'contacts.apps.ContactsConfig',
     'knox',
     'corsheaders',
     
