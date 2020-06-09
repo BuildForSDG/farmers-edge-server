@@ -1,5 +1,5 @@
 {% autoescape off %}
 Hi {{ name }},
 Please click on the link to confirm your registration,{{token}}
-http://127.0.0.1:8000{% url 'activate' uidb64=uid token=token %}
+{{b}}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}

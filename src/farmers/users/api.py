@@ -6,8 +6,10 @@ from knox.models import AuthToken
 from .serializers import RegisterSerializer,UserSerializer,LoginSerializer
 from rest_framework.views import APIView
 from .emails import send_welcome_email
-from .tasks import send_confirmation_email_task
+from .tasks import send_confirmation_email_task,send_password_reset_token_task
 from .token_generator import account_activation_token
+from .reset_generator import reset_password
+
 from django.http import HttpResponse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -16,6 +18,9 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
 
 class RegisterAPI(generics.CreateAPIView):
+from rest_framework.decorators import api_view
+from rest_framework.renderers import HTMLFormRenderer,TemplateHTMLRenderer
+class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
     parser_classes = (MultiPartParser, FormParser)
 
@@ -70,3 +75,50 @@ class ActivateToken(APIView):
     def post(self):
         print("hey")
         return HttpResponse({"hey man"})
+
+class PasswordResetRequest(APIView):
+    def post(self,request,*args,**kwargs):
+        # print(request.data['email'])
+        email = request.data['email']
+        user = User.objects.filter(email=email).first()
+        print(user)
+        if email != user.email:
+            print("this is not your account")
+        else:
+            b = request.get_host()
+            send_password_reset_token_task.delay(
+                user.surname,
+                user.email,
+                urlsafe_base64_encode(force_bytes(user.pk)),
+                b,
+                account_activation_token.make_token(user)
+            )
+        return Response({"got it"})
+
+class ConfirmPasswordChange(APIView):
+    def post(self,request,*args,**kwargs):
+        password = request.data['password']
+        print(password)
+        return Response({"hh"})
+@api_view(['POST'])
+def confirm_password_change(request,uidb64,token):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'change/pass_change.html'
+    if request.method == 'POST':
+        print('request.data')
+        password = request.data['password']
+        print(password)
+        try:
+            uid = force_bytes(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+            print(user,token)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+        if user is not None and account_activation_token.check_token(user, token):
+            print("usr",user)
+            user.set_password(password)
+            user.save()
+            return Response({"you have reset your password successfully"})
+        else:
+            return Response({"Invalid token"})
+        return Response("hey")

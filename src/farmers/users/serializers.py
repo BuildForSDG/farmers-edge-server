@@ -13,8 +13,8 @@ from django.http import HttpResponse
 from helpers.serial_errors import error_dict
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.CharField()
-    password = serializers.CharField()
+    email = serializers.EmailField(default=None)
+    password =  serializers.CharField(default=None)
 
     def validate(self, data):
         user = authenticate(**data)

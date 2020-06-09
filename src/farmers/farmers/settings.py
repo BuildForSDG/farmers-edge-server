@@ -28,14 +28,10 @@ INSTALLED_APPS = [
     'market.apps.MarketConfig',
     'rest_framework',
     'users.apps.UsersConfig',
-<<<<<<< HEAD
     'contacts.apps.ContactsConfig',
-    'knox'
-=======
+    'django_rest_passwordreset',
     'knox',
     'corsheaders',
-    
->>>>>>> develop
 ]
 
 MIDDLEWARE = [
