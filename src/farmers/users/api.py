@@ -86,7 +86,13 @@ class PasswordResetRequest(APIView):
             print("this is not your account")
         else:
             b = request.get_host()
-            send_password_reset_token_task.delay(user.full_name,user.email,urlsafe_base64_encode(force_bytes(user.pk)),b,account_activation_token.make_token(user))
+            send_password_reset_token_task.delay(
+                user.surname,
+                user.email,
+                urlsafe_base64_encode(force_bytes(user.pk)),
+                b,
+                account_activation_token.make_token(user)
+            )
         return Response({"got it"})
 
 class ConfirmPasswordChange(APIView):

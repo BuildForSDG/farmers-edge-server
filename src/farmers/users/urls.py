@@ -13,5 +13,4 @@ urlpatterns = [
     path('v1/activate/<uidb64>/<token>',activate_account,name="activate"),
     path('api/password_reset/',include('django_rest_passwordreset.urls')),
     path('v1/logout/',knox_views.LogoutView.as_view(),name="logout"),
-    path('api/auth/',include('knox.urls')),
 ]
