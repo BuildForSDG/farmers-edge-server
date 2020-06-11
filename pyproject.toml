@@ -7,11 +7,8 @@ authors = ["manulangat <emmanuelthedeveloper@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^3.0.6"
-<<<<<<< HEAD
 django-rest-passwordreset = "^1.1.0"
-=======
 django-cors-headers = "^3.3.0"
->>>>>>> develop
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.7.9"

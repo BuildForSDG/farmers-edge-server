@@ -13,6 +13,7 @@ from django.http import HttpResponse
 from helpers.serial_errors import error_dict
 
 class LoginSerializer(serializers.Serializer):
+    """Serializes login requests and logs in registered user."""
     email = serializers.EmailField(default=None)
     password =  serializers.CharField(default=None)
 
@@ -25,7 +26,7 @@ class LoginSerializer(serializers.Serializer):
 
 # register serializers
 class RegisterSerializer(serializers.ModelSerializer):
-    """Serializers registration requests and creates a new user."""
+    """Serializes registration requests and creates a new user."""
     
     class Meta:
         model = User
@@ -65,6 +66,20 @@ class RegisterSerializer(serializers.ModelSerializer):
         # print(user)
         # print(reverse('register'))
         return user
+
+class PasswordResetSerializer(serializers.ModelSerializer):
+    """Serializes password reset requests."""
+    
+    class Meta:
+        model = User
+        fields = ('email',)
+
+class ConfirmPasswordResetSerializer(serializers.ModelSerializer):
+    """Serializes confirm password reset requests."""
+    
+    class Meta:
+        model = User
+        fields = ('password',)
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):

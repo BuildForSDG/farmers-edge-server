@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from rest_framework import generics
-
 from .models import Contact
 from .serializers import ContactSerializer
 from .tasks import send_issue_tracking_task
@@ -14,7 +13,7 @@ class ContactCreate(generics.CreateAPIView):
         email = self.request.data['email']
         subject = self.request.data['subject']
         message = self.request.data['message']
-        send_issue_tracking_task.delay(name,email)
-        serializer.save(name=name,email=email,subject=subject,message=message)
+        send_issue_tracking_task.delay(name, email)
+        serializer.save(name=name, email=email, subject=subject, message=message)
 
 
