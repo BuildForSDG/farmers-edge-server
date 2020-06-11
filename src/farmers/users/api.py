@@ -3,8 +3,13 @@ from .models import User
 from rest_framework import generics,permissions
 from rest_framework.views import APIView
 from knox.models import AuthToken
-from .serializers import RegisterSerializer,UserSerializer,LoginSerializer
-from rest_framework.views import APIView
+from .serializers import (
+    RegisterSerializer,
+    UserSerializer,
+    LoginSerializer,
+    PasswordResetSerializer,
+    ConfirmPasswordResetSerializer
+    )
 from .emails import send_welcome_email
 from .tasks import send_confirmation_email_task,send_password_reset_token_task
 from .token_generator import account_activation_token
@@ -16,11 +21,11 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
-
-class RegisterAPI(generics.CreateAPIView):
 from rest_framework.decorators import api_view
 from rest_framework.renderers import HTMLFormRenderer,TemplateHTMLRenderer
-class RegisterAPI(generics.GenericAPIView):
+from django.conf import settings
+
+class RegisterAPI(generics.CreateAPIView):
     serializer_class = RegisterSerializer
     parser_classes = (MultiPartParser, FormParser)
 
@@ -33,10 +38,12 @@ class RegisterAPI(generics.GenericAPIView):
         user = serializer.save()
         print(user.email)
         token = AuthToken.objects.create(user)[1]
+        b = request.get_host()
         send_confirmation_email_task.delay(
             user.username,
             user.email,
             urlsafe_base64_encode(force_bytes(user.pk)),
+            b,
             account_activation_token.make_token(user)
         )
         return Response({
@@ -76,7 +83,9 @@ class ActivateToken(APIView):
         print("hey")
         return HttpResponse({"hey man"})
 
-class PasswordResetRequest(APIView):
+class PasswordResetRequest(generics.CreateAPIView):
+    serializer_class = PasswordResetSerializer
+    
     def post(self,request,*args,**kwargs):
         # print(request.data['email'])
         email = request.data['email']
@@ -87,15 +96,17 @@ class PasswordResetRequest(APIView):
         else:
             b = request.get_host()
             send_password_reset_token_task.delay(
-                user.surname,
+                user.username,
                 user.email,
                 urlsafe_base64_encode(force_bytes(user.pk)),
                 b,
                 account_activation_token.make_token(user)
             )
-        return Response({"got it"})
+        return Response({"Received"})
 
-class ConfirmPasswordChange(APIView):
+class ConfirmPasswordChange(generics.CreateAPIView):
+    serializer_class = ConfirmPasswordResetSerializer
+
     def post(self,request,*args,**kwargs):
         password = request.data['password']
         print(password)
@@ -118,7 +129,7 @@ def confirm_password_change(request,uidb64,token):
             print("usr",user)
             user.set_password(password)
             user.save()
-            return Response({"you have reset your password successfully"})
+            return Response({"You have reset your password successfully"})
         else:
             return Response({"Invalid token"})
         return Response("hey")

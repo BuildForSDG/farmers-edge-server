@@ -9,5 +9,4 @@ urlpatterns = [
     path('api/v1/', include('market.urls')),
     path('', include('users.reset_urls')),
     path('admin/', admin.site.urls),
-
 ]

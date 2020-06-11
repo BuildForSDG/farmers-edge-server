@@ -1,10 +1,10 @@
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-
+from django.conf import settings
 
 def send_issue_tracking(name,receiver):
     subject ='Your issue has been noted'
-    sender = 'emmanuelthedeveloper@gmail.com'
+    sender = settings.EMAIL_HOST_USER
 
     text_content = render_to_string('email/contact.txt',{"name":name})
     html_content = render_to_string('email/contact.html',{"name":name})
