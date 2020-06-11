@@ -4,7 +4,7 @@ from market.models import Product, Order
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'product', 'totalCost', 'quantity', 'ready']
+        fields = ['id', 'retailer_email', 'product', 'totalCost', 'quantity', 'ready']
                      
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:

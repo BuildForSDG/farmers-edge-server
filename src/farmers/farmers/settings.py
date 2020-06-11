@@ -29,9 +29,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'users.apps.UsersConfig',
     'contacts.apps.ContactsConfig',
+    'django_rest_passwordreset',
     'knox',
     'corsheaders',
-    
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from rest_framework import generics
-
 from .models import Contact
 from .serializers import ContactSerializer
 from .tasks import send_issue_tracking_task

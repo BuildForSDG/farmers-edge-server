@@ -73,33 +73,12 @@ To be provided soon
 | ------------------------------------------------------|:-------------------------------------------------------
 | POST &emsp;&emsp;/auth/v1/register                    | This will register user                                 |
 | POST &emsp;&emsp;/auth/v1/login                       | This will login user                                    |
+| POST &emsp;&emsp;/auth/v1/request/                    | This will send password reset                           |
 | POST &emsp;&emsp;/api/v1/farmer/product/              | This will create Product                                |
-| POST &emsp;&emsp;/api/v1/retailer/order/              | This will create Order                                  |
+| POST &emsp;&emsp;/api/v1/retailer/order/              | This will create order                                  |
 | GET  &emsp;&emsp;/api/v1/'farmer/product/list/        | This will return all products                           |
 | GET  &emsp;&emsp;/api/v1/retailer/order/list          | This will return all placed order                       |
-| GET  &emsp;&emsp;/api/v1/product/ready/1              | This will send email notification to retailers          |
-| PUT  &emsp;&emsp;/api/v1/farmer/update/1              | This will update Product                                |
-| GET  &emsp;&emsp;/api/v1/retailer/order/detail/1      | This will return order detail                           |
-| GET  &emsp;&emsp;/auth/v1/user/                       | This will return user data                              |
-
-### Authentication
-
-`POST /auth/v1/login`
-
-Example request body:
-
-```source-json
-{
-  "user":{
-    "email": "levynaibei@gmail.com",
-    "password": "pass12"
-  }
-}
-```
-
-No authentication required, returns a User
-
-Required fields: `email`, `password`
+| POST &emsp;&emsp;/api/v1/contact/                     | This will post a contact info                           |
 
 ### Registration
 
@@ -128,6 +107,26 @@ No authentication required, returns a User
 Required fields: `firstName`, `surname`, `username`, `email`, `password`,
                  `userType`, `location`, `phoneNumber`, `idNumber`, `image`,
 
+
+### Authentication
+
+`POST /auth/v1/login`
+
+Example request body:
+
+```source-json
+{
+  "user":{
+    "email": "levynaibei@gmail.com",
+    "password": "pass12"
+  }
+}
+```
+
+No authentication required, returns a User
+
+Required fields: `email`, `password`
+
 ### Create Product
 
 `POST api/v1/farmer/product/`
@@ -145,7 +144,7 @@ Example request body:
 
 Authentication required, will return a Product
 
-Required fields: `product`, `total_cost`, `quantity`, `ready`
+Required fields: `product`, `totalCost`, `quantity`, `ready`
 
 ### Create Order
 
@@ -161,6 +160,9 @@ Example request body:
         "waitTime": "2 months"
     }
 ```
+Authentication required, will return a Product
+
+Required fields: `productName`, `totalCost`, `quantity`, `waitTime`
 
 ### Contact Us
 
@@ -176,10 +178,20 @@ Example request body:
         "message": "message here"
     }
 ```
+Required fields: `name`, `email`, `subject`, `message`
 
-Authentication required, will return a Product
+### Password Reset Request
 
-Required fields: `product`, `total_cost`, `quantity`, `wait_time`
+`POST auth/v1/request/`
+
+Example request body:
+
+```source-json
+     {
+        "email": "someone@gmail.com",
+    }
+```
+Required fields: `email`
 
 ## Authors
 

@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.conf import settings
 
 class Product(models.Model):
-    #farmer = models.ForeignKey(settings.AUTH_USER_MODEL, default=None, on_delete=models.CASCADE)
+    retailer_email = models.ForeignKey(settings.AUTH_USER_MODEL, default=None, null=True, on_delete=models.CASCADE)
     product = models.CharField(max_length=200)
     quantity = models.CharField(max_length=200, null=True)
     totalCost = models.CharField(max_length=100, null=True)
@@ -13,6 +13,7 @@ class Product(models.Model):
         return self.product
 
 class Order(models.Model):
+    order = models.ForeignKey(Product, default=None, null=True, on_delete=models.CASCADE)
     productName = models.CharField(max_length=100, null=True)
     totalCost = models.CharField(max_length=200)
     quantity = models.CharField(max_length=100, null=True)
@@ -20,8 +21,3 @@ class Order(models.Model):
 
     def __str__(self):
        return self.productName
-
-    # @property
-    # def get_total(self):
-    # 	total = self.product.price * self.quantity
-    # 	return total
