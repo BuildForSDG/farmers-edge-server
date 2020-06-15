@@ -32,21 +32,24 @@ git clone https://github.com/BuildForSDG/farmers-edge-server.git
 ```
 
 Move into the project folder
-
 ```
+
 cd farmers-edge-server
 ```
 
 Install the dependencies of the project
-
 ```
+
 poetry install
 ```
 
-Run the app
-
+Run poetry run python manage.py runserver
 ```
-poetry run python manage.py runserver
+
+Open a another terminal and run source .env
+```
+
+Run Celery: celery -A farmers worker -l info
 ```
 
 #### Further info
@@ -56,9 +59,9 @@ poetry run python manage.py runserver
 - Install dependencies: `poetry add <dependency>`
 - Install dev dependencies: `poetry add --dev <dev-dependency>`
 
-#### Hosted API in Heroku
+#### Deployed API in Heroku
 
-To be provided soon
+link to be provided in a shortwhile
 
 ## Functionality
 
@@ -66,6 +69,8 @@ To be provided soon
 2. Registered users can login
 3. Retailer can place order
 4. Farmer can create product
+5. User send query using contact form
+6. User can reset password
 
 ### Endpoints
 
@@ -76,7 +81,7 @@ To be provided soon
 | POST &emsp;&emsp;/auth/v1/request/                    | This will send password reset                           |
 | POST &emsp;&emsp;/api/v1/farmer/product/              | This will create Product                                |
 | POST &emsp;&emsp;/api/v1/retailer/order/              | This will create order                                  |
-| GET  &emsp;&emsp;/api/v1/'farmer/product/list/        | This will return all products                           |
+| GET  &emsp;&emsp;/api/v1/farmer/product/list/         | This will return all products                           |
 | GET  &emsp;&emsp;/api/v1/retailer/order/list          | This will return all placed order                       |
 | POST &emsp;&emsp;/api/v1/contact/                     | This will post a contact info                           |
 
@@ -104,8 +109,8 @@ Example request body:
 
 No authentication required, returns a User
 
-Required fields: `firstName`, `surname`, `username`, `email`, `password`,
-                 `userType`, `location`, `phoneNumber`, `idNumber`, `image`,
+Required fields: `firstName`, `surname`, `username`, `email(unique)`, `password`,
+`typeUser`, `location`, `phoneNumber(unique)`, `idNumber(unique)`
 
 
 ### Authentication
@@ -135,6 +140,7 @@ Example request body:
 
 ```source-json
      {
+        "retailerEmail": "something@gmail.com",
         "product": "Sunflower",
         "totalCost": "Kes 200",
         "quantity": "20 Kg",
@@ -160,7 +166,8 @@ Example request body:
         "waitTime": "2 months"
     }
 ```
-Authentication required, will return a Product
+
+Authentication required, will return an order
 
 Required fields: `productName`, `totalCost`, `quantity`, `waitTime`
 
@@ -178,6 +185,7 @@ Example request body:
         "message": "message here"
     }
 ```
+
 Required fields: `name`, `email`, `subject`, `message`
 
 ### Password Reset Request
@@ -191,6 +199,7 @@ Example request body:
         "email": "someone@gmail.com",
     }
 ```
+
 Required fields: `email`
 
 ## Authors

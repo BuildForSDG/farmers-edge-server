@@ -22,12 +22,12 @@ class ProductCreateAPIView(CreateAPIView):
         data = self.request.data              
         device = serializer.save()
         t = device.id
-        print(t)
+        # print(t)
         product = Product.objects.get(pk=t)
         if product.ready == True:
             print("email should be sent")
             x = Product.objects.get(pk=t)
-            send_to = x.retailer_email
+            send_to = x.retailerEmail
             #print(x.retailer)
             subject = "Farmers Edge"
             message = "Dear Customer, Your order is ready. Please vist our website to process it. Thank you."

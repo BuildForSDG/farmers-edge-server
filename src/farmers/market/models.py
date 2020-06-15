@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.conf import settings
 
 class Product(models.Model):
-    retailer_email = models.ForeignKey(settings.AUTH_USER_MODEL, default=None, null=True, on_delete=models.CASCADE)
+    retailerEmail = models.EmailField(max_length=254)
     product = models.CharField(max_length=200)
     quantity = models.CharField(max_length=200, null=True)
     totalCost = models.CharField(max_length=100, null=True)
