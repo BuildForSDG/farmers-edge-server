@@ -31,24 +31,23 @@ Clone the repository
 git clone https://github.com/BuildForSDG/farmers-edge-server.git
 ```
 
-Move into the project folder
+```
+cd farmers-edge-server/src/farmers
 ```
 
-cd farmers-edge-server
 ```
-
-Install the dependencies of the project
-```
-
 poetry install
 ```
 
+```
 Run poetry run python manage.py runserver
 ```
 
+```
 Open a another terminal and run source .env
 ```
 
+```
 Run Celery: celery -A farmers worker -l info
 ```
 
