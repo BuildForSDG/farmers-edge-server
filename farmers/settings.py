@@ -1,6 +1,7 @@
 
 import os
 import django_heroku 
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,7 +15,10 @@ SECRET_KEY = '17*eqlj5f@=%6cwo%gdrw$uhkg(tey+u-114qk6ydu(3uzc_97'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'http://127.0.0.1:8000',
+    'https://fe-staging.netlify.app/'
+]
 
 # Application definition
 
@@ -25,13 +29,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'market.apps.MarketConfig',
+
     'rest_framework',
-    'users.apps.UsersConfig',
-    'contacts.apps.ContactsConfig',
     'django_rest_passwordreset',
     'knox',
     'corsheaders',
+
+    'farmers.api.contacts',
+    'farmers.api.market',
+    'farmers.api.users',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +83,8 @@ DATABASES = {
     }
 }
 
+# DATABASES['default'] = dj_database_url.config()
+
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
@@ -117,11 +125,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+#  CORS
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:3000',
+]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-CORS_ORIGIN_WHITELIST = 'http://localhost:3000',
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

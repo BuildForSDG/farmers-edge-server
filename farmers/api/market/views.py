@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.generics import ListAPIView, CreateAPIView
-from market.models import Product, Order
-from market.serializers import ProductSerializer, OrderSerializer
+from .models import Product, Order
+from .serializers import ProductSerializer, OrderSerializer
 
 #Get all the created products
 class ProductListView(ListAPIView):
