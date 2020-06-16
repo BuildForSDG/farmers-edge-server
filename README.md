@@ -25,14 +25,12 @@ This app aims to address hunger problem in the world by focusing on achievemment
 
 #### Installation
 
-Clone the repository
-
 ```
 git clone https://github.com/BuildForSDG/farmers-edge-server.git
 ```
 
 ```
-cd farmers-edge-server/src/farmers
+cd farmers-edge-server/
 ```
 
 ```
@@ -40,15 +38,35 @@ poetry install
 ```
 
 ```
+Activate Virtual env: source env/bin/activate
+```
+
+```
+Create .env file and add settings environment variables
+```
+
+```
+Run pip install -r requirements.txt
+```
+
+```
 Run poetry run python manage.py runserver
 ```
 
 ```
-Open a another terminal and run source .env
+Open a another terminal and activate virtual env
+```
+
+```
+Run source .env
 ```
 
 ```
 Run Celery: celery -A farmers worker -l info
+```
+
+```
+Consume endpoints shown in the table below using Postmann/browser
 ```
 
 #### Further info

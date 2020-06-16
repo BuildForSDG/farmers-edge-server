@@ -10,7 +10,6 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .token_generator import account_activation_token
 from django.http import HttpResponse
-from helpers.serial_errors import error_dict
 
 class LoginSerializer(serializers.Serializer):
     """Serializes login requests and logs in registered user."""
