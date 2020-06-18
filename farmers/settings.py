@@ -15,9 +15,7 @@ SECRET_KEY = '17*eqlj5f@=%6cwo%gdrw$uhkg(tey+u-114qk6ydu(3uzc_97'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '*'
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -29,10 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'rest_framework',
     'django_rest_passwordreset',
     'knox',
-    'corsheaders',
 
     'farmers.api.contacts',
     'farmers.api.market',
@@ -50,6 +48,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
+
+MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+)
 
 ROOT_URLCONF = 'farmers.urls'
 
@@ -124,11 +127,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
 #  CORS
-CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:3000",
-    "https://fe-staging.netlify.com",
-]
+# CORS_ORIGIN_WHITELIST = [
+#     'http://127.0.0.1:3000',
+#     'https://fe-staging.netlify.app'
+# ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
