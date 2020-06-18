@@ -131,10 +131,17 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 #  CORS
+<<<<<<< HEAD
 # CORS_ORIGIN_WHITELIST = [
 #     'http://127.0.0.1:3000',
 #     'https://fe-staging.netlify.app'
 # ]
+=======
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:3000',
+    'https://fe-staging.netlify.app'
+]
+>>>>>>> 1eb108018bf7ff23843e0e125e6d76918c8ef2e2
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
