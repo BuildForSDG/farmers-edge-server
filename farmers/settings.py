@@ -85,6 +85,13 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': os.getenv('DATABASE_URL')
+#    }
+# }
+
 # DATABASES['default'] = dj_database_url.config()
 
 AUTH_USER_MODEL = 'users.User'
@@ -131,14 +138,14 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 #  CORS
-# CORS_ORIGIN_WHITELIST = [
-#     'http://127.0.0.1:3000',
-#     'https://fe-staging.netlify.app'
-# ]
+CORS_ORIGIN_WHITELIST = [
+    '*'
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -153,7 +160,7 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = config('CELERY_BROKER_URL')
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
