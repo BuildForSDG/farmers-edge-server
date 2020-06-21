@@ -40,7 +40,7 @@ class RegisterAPI(generics.CreateAPIView):
         token = AuthToken.objects.create(user)[1]
         b = request.get_host()
         # send_confirmation_email_task.delay(
-        send_confirmation_email_task(
+        send_welcome_email(
             user.username,
             user.email,
             urlsafe_base64_encode(force_bytes(user.pk)),
