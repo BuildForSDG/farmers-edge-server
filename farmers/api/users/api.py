@@ -39,7 +39,8 @@ class RegisterAPI(generics.CreateAPIView):
         print(user.email)
         token = AuthToken.objects.create(user)[1]
         b = request.get_host()
-        send_confirmation_email_task.delay(
+        # send_confirmation_email_task.delay(
+        send_confirmation_email_task(
             user.username,
             user.email,
             urlsafe_base64_encode(force_bytes(user.pk)),
@@ -95,7 +96,8 @@ class PasswordResetRequest(generics.CreateAPIView):
             print("this is not your account")
         else:
             b = request.get_host()
-            send_password_reset_token_task.delay(
+            # send_password_reset_token_task.delay(
+            send_password_reset_token_task(
                 user.username,
                 user.email,
                 urlsafe_base64_encode(force_bytes(user.pk)),

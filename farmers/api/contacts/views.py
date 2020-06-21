@@ -13,7 +13,8 @@ class ContactCreate(generics.CreateAPIView):
         email = self.request.data['email']
         subject = self.request.data['subject']
         message = self.request.data['message']
-        send_issue_tracking_task.delay(name, email)
+        # send_issue_tracking_task.delay(name, email)
+        send_issue_tracking_task(name, email)
         serializer.save(name=name, email=email, subject=subject, message=message)
 
 
