@@ -3,6 +3,7 @@ from rest_framework import generics
 from .models import Contact
 from .serializers import ContactSerializer
 from .tasks import send_issue_tracking_task
+from .emails import send_issue_tracking
 # Create your views here.
 
 class ContactCreate(generics.CreateAPIView):

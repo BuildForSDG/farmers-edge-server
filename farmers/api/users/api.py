@@ -11,6 +11,7 @@ from .serializers import (
     ConfirmPasswordResetSerializer
     )
 from .emails import send_welcome_email
+from .emails import send_password_reset_token
 from .tasks import send_confirmation_email_task,send_password_reset_token_task
 from .token_generator import account_activation_token
 from .reset_generator import reset_password
