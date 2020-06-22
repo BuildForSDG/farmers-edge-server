@@ -97,7 +97,7 @@ class PasswordResetRequest(generics.CreateAPIView):
         else:
             b = request.get_host()
             # send_password_reset_token_task.delay(
-            send_password_reset_token_task(
+            send_password_reset_token(
                 user.username,
                 user.email,
                 urlsafe_base64_encode(force_bytes(user.pk)),

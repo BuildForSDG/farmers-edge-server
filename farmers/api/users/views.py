@@ -34,7 +34,7 @@ def confirm_update(request,uidb64,token):
             print("usr",user)
             user.set_password(password)
             user.save()
-            return HttpResponse({"you have reset your password successfully"})
+            return HttpResponse({"You have reset your password successfully"})
         else:
             return HttpResponse({"Invalid token"})
     return render(request,'change/pass_change.html')
