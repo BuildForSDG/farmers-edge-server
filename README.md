@@ -78,7 +78,7 @@ Consume endpoints shown in the table below using Postmann/browser
 
 #### Deployed API in Heroku
 
-https://be-staging.herokuapp.com/
+https://farmers-edge.herokuapp.com/
 
 ## Functionality
 
