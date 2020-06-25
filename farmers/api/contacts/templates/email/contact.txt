@@ -1,2 +1,1 @@
-Hello {{name}}
-Your issue has been tracked and a response will be forwaded soonest
+Hello {{name}}, your issue has been tracked and a response will be forwaded soonest
