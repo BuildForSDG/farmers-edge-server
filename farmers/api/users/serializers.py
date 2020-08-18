@@ -33,12 +33,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             'id',
             'firstName',
             'surname',
-            'username',
             'email',
             'password',
-            'phoneNumber',
             'location',
-            'idNumber',
             'typeUser',
         )
         extra_kwargs = {
@@ -50,11 +47,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create(
             firstName = validated_data['firstName'],
             surname = validated_data['surname'],
-	        username = validated_data['username'],
             email = validated_data['email'],
             location = validated_data['location'],
-            phoneNumber = validated_data['phoneNumber'],
-            idNumber = validated_data['idNumber'],
             typeUser = validated_data['typeUser'],
             is_active = False
         )
@@ -62,8 +56,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         f = False
         user.is_active = False
         user.save()
-        # print(user)
-        # print(reverse('register'))
         return user
 
 class PasswordResetSerializer(serializers.ModelSerializer):
@@ -88,11 +80,8 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'firstName',
             'surname',
-            'username',
             'email',
             'location',
-            'phoneNumber',
-            'idNumber',
             'typeUser',
             'is_active'
         )

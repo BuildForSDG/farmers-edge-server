@@ -7,6 +7,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .token_generator import account_activation_token
 # Create your views here.
 def activate_account(request,  uidb64, token):
+    # import pdb; set_trace()
     try:
         uid = force_bytes(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
