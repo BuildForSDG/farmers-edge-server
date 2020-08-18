@@ -42,7 +42,7 @@ class RegisterAPI(generics.CreateAPIView):
         b = request.get_host()
         # send_confirmation_email_task.delay(
         send_welcome_email(
-            user.username,
+            user.firstName,
             user.email,
             urlsafe_base64_encode(force_bytes(user.pk)),
             b,
@@ -99,7 +99,7 @@ class PasswordResetRequest(generics.CreateAPIView):
             b = request.get_host()
             # send_password_reset_token_task.delay(
             send_password_reset_token(
-                user.username,
+                user.firstName,
                 user.email,
                 urlsafe_base64_encode(force_bytes(user.pk)),
                 b,

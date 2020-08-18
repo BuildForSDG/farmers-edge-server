@@ -78,7 +78,9 @@ Consume endpoints shown in the table below using Postmann/browser
 
 #### Deployed API in Heroku
 
-https://farmers-edge.herokuapp.com/
+Api is hosted in free Heroku account, the server enters `sleep mode` when not in use. Please allow a few seconds for the servers to restart, if you notice a delay.
+
+` https://be-staging.herokuapp.com/ `
 
 ## Functionality
 
@@ -113,11 +115,8 @@ Example request body:
   "user":{
     "firstName": "John",
     "surname": "Doe",
-    "username": "JD",
     "email":     "jd@gmail.com",
     "password": "pass12"
-    "phoneNumber": "0701255789",
-    "idNumber": "0120067",
     "location": "location",
     "typeUser": "customer"
   }
@@ -126,9 +125,8 @@ Example request body:
 
 No authentication required, returns a User
 
-Required fields: `firstName`, `surname`, `username`, `email(unique)`, `password`,
-`typeUser`, `location`, `phoneNumber(unique)`, `idNumber(unique)`
-
+Required fields: `firstName`, `surname`, `email(unique)`, `password`,
+`typeUser`, `location`
 
 ### Authentication
 
@@ -222,7 +220,7 @@ Required fields: `email`
 ## Authors
 
 - [Ogunlana Tunbosun](https://github.com/bosunogunlana) - Mentor
-- [Levy Naibei](https://github.com/Levy-Naibei) - TTL
+- [Levy Naibei](https://github.com/Levy-Naibei) - Team Lead
 - [Ennocent Omondi](https://github.com/innovistar)
 - [Emmanuel Langat](https://github.com/manulangat1)
 

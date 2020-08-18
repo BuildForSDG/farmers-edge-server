@@ -1,5 +1,5 @@
 {% autoescape off %}
 Hi {{ name }},
 Please click on the link to verify your account,
-https://farmers-edge.herokuapp.com{% url 'activate' uidb64=uid token=token %}
+{{ base_url }}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}
