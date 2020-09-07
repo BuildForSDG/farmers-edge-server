@@ -10,10 +10,11 @@ def send_welcome_email(name,receiver,uid,b,token):
     #creating the message,subject and sender
     subject = "Activate your account"
     sender = settings.EMAIL_HOST_USER
+    base_url=settings.BASE_URL
 
     # @passing in the context variables
-    text_content = render_to_string('email/newsemail.txt',{"name":name,"uid":uid,"b":b,"token":token})
-    html_content = render_to_string('email/newsemail.html',{"name":name,"uid":uid,"b":b,"token":token})
+    text_content = render_to_string('email/newsemail.txt',{"name":name,"uid":uid,"b":b,"token":token, "base_url":base_url})
+    html_content = render_to_string('email/newsemail.html',{"name":name,"uid":uid,"b":b,"token":token, "base_url":base_url})
 
     msg = EmailMultiAlternatives(subject,text_content,sender,[receiver])
     msg.attach_alternative(html_content,'text/html')
@@ -23,8 +24,10 @@ def send_welcome_email(name,receiver,uid,b,token):
 def send_password_reset_token(name,receiver,uid,b,token):
     subject = "Reset your password"
     sender = settings.EMAIL_HOST_USER
-    text_content = render_to_string('email/resets.txt',{"name":name,"uid":uid,"b":b,"token":token})
-    html_content = render_to_string('email/resets.html',{"name":name,"uid":uid,"b":b,"token":token})
+    base_url=settings.BASE_URL
+
+    text_content = render_to_string('email/resets.txt',{"name":name,"uid":uid,"b":b,"token":token, "base_url":base_url})
+    html_content = render_to_string('email/resets.html',{"name":name,"uid":uid,"b":b,"token":token, "base_url":base_url})
 
     msg = EmailMultiAlternatives(subject,text_content,sender,[receiver])
     msg.attach_alternative(html_content,'text/html')

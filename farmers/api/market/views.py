@@ -12,6 +12,13 @@ from .serializers import ProductSerializer, OrderSerializer
 class ProductListView(ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    # def get_queryset(self):
+    #     """
+    #     This view should return a list of all the products
+    #     for the currently authenticated user.
+    #     """
+    #     user = self.request.user
+    #     return Product.objects.filter(user=id).exists()
 
 class ProductCreateAPIView(CreateAPIView):
     queryset = Product.objects.all()
@@ -63,6 +70,14 @@ def product_update(request, pk):
 class OrderListView(ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    # def get_queryset(self):
+    #     """
+    #     This view should return a list of all the orders
+    #     for the currently authenticated user.
+    #     """
+    #     orders = Order.objects.filter(user=self.request.user)
+    #     return orders
 
 class OrderCreateAPIView(CreateAPIView):
     queryset = Order.objects.all()

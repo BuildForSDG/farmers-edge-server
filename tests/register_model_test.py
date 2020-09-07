@@ -37,7 +37,7 @@ def test_can_create_user(api_client):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-   'username, password, status_code', [
+   'firstName, password, status_code', [
     #    (None, None, 400),
     #    (None, 'strong_pass', 400),
     #    ('user@example.com', None, 400),
@@ -46,11 +46,11 @@ def test_can_create_user(api_client):
    ]
 )
 def test_login_data_validation(
-   username, password, status_code, api_client
+   firstName, password, status_code, api_client
 ):
    url = reverse('login')
    data = {
-       'username': username,
+       'firstName': firstName,
        'password': password
    }
    response = api_client.post(url, data=data)
